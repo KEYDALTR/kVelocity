@@ -1,0 +1,88 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build & Publish Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Extract version
+        id: version
+        run: |
+          if [[ "${{ github.ref_type }}" == "tag" ]]; then
+            echo "version=${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
+          else
+            echo "version=dev-$(date +%Y%m%d)" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build release bundle
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          BUNDLE="kVelocity-${VERSION}"
+
+          mkdir -p "dist/${BUNDLE}"
+
+          rsync -av \
+            --exclude='.git*' \
+            --exclude='.github' \
+            --exclude='dist' \
+            --exclude='forwarding.secret' \
+            --exclude='logs' \
+            --exclude='cache' \
+            --exclude='*.tmp' \
+            ./ "dist/${BUNDLE}/"
+
+          cd dist
+          zip -r "${BUNDLE}.zip" "${BUNDLE}"
+          tar -czf "${BUNDLE}.tar.gz" "${BUNDLE}"
+
+          sha256sum "${BUNDLE}.zip" > "${BUNDLE}.zip.sha256"
+          sha256sum "${BUNDLE}.tar.gz" > "${BUNDLE}.tar.gz.sha256"
+
+          ls -lh
+
+      - name: Create GitHub Release
+        if: github.ref_type == 'tag'
+        uses: softprops/action-gh-release@v2
+        with:
+          name: "kVelocity ${{ steps.version.outputs.version }}"
+          generate_release_notes: true
+          body: |
+
+            **KEYDAL Projects** | Developer: Egemen KEYDAL
+
+            1. Aşağıdaki asset'lerden birini indirin (`.zip` veya `.tar.gz`)
+            2. Arşivi açın: `cd kVelocity-${{ steps.version.outputs.version }}`
+            3. Setup wizard'ı çalıştırın: `./setup.sh` (Windows: `setup.bat`)
+            4. Başlatın: `./baslat.sh` (Windows: `baslat.bat`)
+
+            Detaylı rehber için [README.md](https://github.com/${{ github.repository }}/blob/main/README.md) dosyasına bakın.
+
+            Aşağıdaki `.sha256` dosyalarında bulunur. Doğrulama:
+            ```bash
+            sha256sum -c kVelocity-${{ steps.version.outputs.version }}.zip.sha256
+            ```
+          files: |
+            dist/*.zip
+            dist/*.tar.gz
+            dist/*.sha256
+
+      - name: Upload artifacts (manual dispatch)
+        if: github.event_name == 'workflow_dispatch'
+        uses: actions/upload-artifact@v4
+        with:
+          name: kVelocity-${{ steps.version.outputs.version }}
+          path: dist/
+          retention-days: 30

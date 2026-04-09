@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: KEYDAL Projects
+    url: https://keydal.net
+    about: KEYDAL Projects ana sayfası
+  - name: Velocity Dokümantasyonu
+    url: https://docs.papermc.io/velocity
+    about: Velocity proxy resmi dokümantasyonu

@@ -1,0 +1,97 @@
+name: Bug Report
+description: kVelocity'de karşılaştığınız bir hatayı raporlayın
+title: "[BUG] "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Bug raporu için teşekkürler. Lütfen aşağıdaki alanları doldurun — ne kadar detay verirseniz o kadar hızlı çözüme ulaşırız.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Hata Açıklaması
+      description: Sorunun net ve özlü bir açıklaması
+      placeholder: Velocity başlatıldığında X hatası alıyorum...
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Yeniden Üretme Adımları
+      description: Hataya ulaşmak için yapılan adımlar
+      placeholder: |
+        1. `./setup.sh` çalıştırdım
+        2. RAM olarak 2048 girdim
+        3. `./baslat.sh` ile başlattım
+        4. Şu hata çıktı...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Beklenen Davranış
+      description: Ne olmasını bekliyordunuz?
+    validations:
+      required: true
+
+  - type: input
+    id: velocity-version
+    attributes:
+      label: Velocity Sürümü
+      description: "velocity.jar dosya adından veya `velocity:version` konsol komutundan"
+      placeholder: "3.4.0-SNAPSHOT build 506"
+    validations:
+      required: true
+
+  - type: input
+    id: java-version
+    attributes:
+      label: Java Sürümü
+      description: "`java -version` çıktısı"
+      placeholder: "openjdk 21.0.5 Temurin"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: İşletim Sistemi
+      options:
+        - Linux (Debian/Ubuntu)
+        - Linux (RHEL/CentOS/Fedora)
+        - Linux (Arch/Manjaro)
+        - Linux (Diğer)
+        - Windows 10
+        - Windows 11
+        - Windows Server
+        - macOS
+        - Docker
+    validations:
+      required: true
+
+  - type: dropdown
+    id: online-mode
+    attributes:
+      label: Online Mode
+      options:
+        - "Cracked (online-mode=false)"
+        - "Premium (online-mode=true)"
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: İlgili Log Parçası
+      description: "`logs/latest.log` dosyasından ilgili bölüm (hata stack trace dahil)"
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Ek Bilgi
+      description: Ekran görüntüleri, config dosyaları, bağlam

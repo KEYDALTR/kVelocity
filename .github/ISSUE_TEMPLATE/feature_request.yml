@@ -1,0 +1,56 @@
+name: Feature Request
+description: Yeni bir özellik veya iyileştirme önerin
+title: "[FEATURE] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Önerileriniz için teşekkürler! Lütfen aşağıdaki alanları doldurarak özellik isteğinizi detaylandırın.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: İlgili Problem
+      description: "Bu özellik hangi problemi çözecek? Örn: 'Her seferinde şunu manuel yapmak zorunda kalıyorum...'"
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Önerilen Çözüm
+      description: İstediğiniz davranışı net şekilde tanımlayın
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Düşündüğünüz Alternatifler
+      description: Denediğiniz veya değerlendirdiğiniz başka çözümler
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Etkilenen Alan
+      multiple: true
+      options:
+        - Setup wizard
+        - Başlatma scripti (baslat.sh/bat)
+        - velocity.toml yapılandırması
+        - Plugin seçimi / auto-download
+        - Dokümantasyon
+        - GitHub Actions / CI
+        - Performance / JVM flags
+        - Security / güvenlik
+        - Localization / i18n
+        - Diğer
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Ek Bilgi
+      description: Ekran görüntüleri, referans projeler, benzer implementasyonlar

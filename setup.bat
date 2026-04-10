@@ -45,7 +45,6 @@ set /p "MOTD=[5/6] MOTD markasi [KEYDAL]: "
 echo.
 echo  Opsiyonel ozellikler:
 set "INSTALL_EXTRAS=E"
-set /p "INSTALL_EXTRAS=[6/6] SkinsRestorer, spark, Velocitab yuklensin mi? [E/h]: "
 
 echo.
 echo  --- Ayarlariniz ---
@@ -96,7 +95,6 @@ echo [kVelocity] [2/5] Pluginler Modrinth'ten indiriliyor...
 if not exist "plugins" mkdir plugins
 
 set "CORE_PLUGINS=luckperms viaversion viabackwards minimotd signedvelocity"
-set "EXTRA_PLUGINS=skinsrestorer spark velocitab"
 
 for %%P in (%CORE_PLUGINS%) do call :download_plugin %%P
 if /i "%INSTALL_EXTRAS%"=="E" (

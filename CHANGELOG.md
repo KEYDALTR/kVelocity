@@ -21,7 +21,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - **ViaVersion** + **ViaBackwards** — 1.16.5 through 1.21.x client support
   - **MiniMOTD** — server list icon + branded MOTD
   - **SignedVelocity** — 1.19+ chat signature bypass for cracked mode (CRITICAL)
-  - **Velocitab** — cross-server tablist with group support
   - **spark** — profiling and performance analysis
 - 33-language Velocity translation pack (`lang/`)
 - Aikar's JVM flags with dynamic `G1HeapRegionSize` based on allocated RAM

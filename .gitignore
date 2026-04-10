@@ -17,7 +17,6 @@ plugins/luckperms/json-storage/
 plugins/skinsrestorer/data/
 plugins/skinsrestorer/cache/
 plugins/skinsrestorer/logs/
-plugins/velocitab/data/
 plugins/spark/
 plugins/viaversion/cache/
 plugins/viaversion/mappings/

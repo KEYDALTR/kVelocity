@@ -97,7 +97,6 @@ Wizard seni şunlar için yönlendirir:
 3. RAM miktarı MB (default: 512)
 4. Backend adresleri (lobi + sunucu)
 5. MOTD markası
-6. Opsiyonel ek plugin'ler (SkinsRestorer, spark, Velocitab)
 
 ### 3) Başlat
 ```bash
@@ -147,7 +146,6 @@ kVelocity/
 **Setup wizard'dan eklenen opsiyonel plugin'ler (Modrinth üzerinden):**
 - **SignedVelocity** — Cracked modda 1.19+ chat fix (KRİTİK)
 - **spark** — Profiling (`/sparkv profiler`)
-- **Velocitab** — Cross-server tablist
 
 ---
 

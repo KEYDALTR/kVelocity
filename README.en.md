@@ -97,7 +97,6 @@ The wizard prompts are **in Turkish** but follow this order:
 3. RAM amount in MB (default: 512)
 4. Backend addresses (lobby + server)
 5. MOTD branding
-6. Optional plugins (SkinsRestorer, spark, Velocitab)
 
 ### 3) Start
 ```bash
@@ -149,7 +148,6 @@ kVelocity/
 **Optional plugins offered by the setup wizard (downloaded from Modrinth):**
 - **SignedVelocity** — Fixes 1.19+ chat for cracked mode (CRITICAL)
 - **spark** — Profiling (`/sparkv profiler`)
-- **Velocitab** — Cross-server tablist
 
 ---
 

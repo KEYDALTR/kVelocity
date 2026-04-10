@@ -73,7 +73,6 @@ MOTD=$(ask "[5/6] MOTD markasi" "KEYDAL" "")
 
 echo ""
 echo -e "${Y}Opsiyonel ozellikler:${N}"
-read -rp "$(echo -e "${B}[6/6] SkinsRestorer, spark, Velocitab yuklensin mi?${N} [${G}E${N}/h]: ")" INSTALL_EXTRAS
 INSTALL_EXTRAS="${INSTALL_EXTRAS:-E}"
 
 echo ""
@@ -135,7 +134,6 @@ CORE_PLUGINS=(
 EXTRA_PLUGINS=(
     "skinsrestorer"
     "spark"
-    "velocitab"
 )
 
 download_plugin() {

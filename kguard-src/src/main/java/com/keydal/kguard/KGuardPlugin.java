@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit;
 )
 public class KGuardPlugin {
 
-    private static final String PRODUCT_CODE = "KVELOCITY";
+    private static final String PRODUCT_CODE = "KVELO";
 
     private final ProxyServer server;
     private final Logger logger;

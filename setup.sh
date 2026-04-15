@@ -69,7 +69,11 @@ echo ""
 echo -e "${Y}Backend sunucu adresleri (format: host:port)${N}"
 LOBBY=$(ask "[4/6] Lobi adresi" "127.0.0.1:25566" validate_address)
 SERVER=$(ask "      Sunucu adresi" "127.0.0.1:25567" validate_address)
-MOTD=$(ask "[5/6] MOTD markasi" "KEYDAL" "")
+MOTD=$(ask "[5/7] MOTD markasi" "KEYDAL" "")
+
+echo ""
+echo -e "${Y}kVelocity lisans anahtari (https://keydal.net):${N}"
+LICENSE_KEY=$(ask "[6/7] License key" "YOUR-LICENSE-KEY-HERE" "")
 
 echo ""
 echo -e "${Y}Opsiyonel ozellikler:${N}"
@@ -83,6 +87,7 @@ echo -e "  RAM:         ${W}${RAM}MB${N}"
 echo -e "  Lobi:        ${W}$LOBBY${N}"
 echo -e "  Sunucu:      ${W}$SERVER${N}"
 echo -e "  MOTD:        ${W}$MOTD${N}"
+echo -e "  License:     ${W}${LICENSE_KEY:0:20}...${N}"
 echo -e "  Ekstralar:   ${W}$INSTALL_EXTRAS${N}"
 echo ""
 read -rp "$(echo -e "${B}Devam edilsin mi?${N} [${G}E${N}/h]: ")" CONFIRM
@@ -217,7 +222,7 @@ else
 fi
 
 echo ""
-log "[5/5] Baslat scriptleri guncelleniyor..."
+log "[5/6] Baslat scriptleri guncelleniyor..."
 if [ -f "baslat.sh" ]; then
     sed_i "s|KVELOCITY_RAM:-[0-9]*|KVELOCITY_RAM:-${RAM}|g" baslat.sh
     ok "baslat.sh RAM -> ${RAM}MB"
@@ -226,6 +231,15 @@ if [ -f "baslat.bat" ]; then
     sed_i "s|KVELOCITY_RAM=[0-9]*|KVELOCITY_RAM=${RAM}|g" baslat.bat
     ok "baslat.bat RAM -> ${RAM}MB"
 fi
+
+echo ""
+log "[6/6] kGuard lisans yapilandiriliyor..."
+mkdir -p plugins/kguard
+cat > plugins/kguard/config.yml <<EOF
+license-key: "${LICENSE_KEY}"
+EOF
+chmod 600 plugins/kguard/config.yml 2>/dev/null || true
+ok "plugins/kguard/config.yml olusturuldu."
 
 echo ""
 echo -e "${C}==============================================${N}"

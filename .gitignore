@@ -1,5 +1,7 @@
 
 forwarding.secret
+plugins/kguard/config.yml
+kguard-src/build/
 
 logs/
 cache/

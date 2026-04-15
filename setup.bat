@@ -40,7 +40,12 @@ set "SERVER=127.0.0.1:25567"
 set /p "SERVER=      Sunucu adresi [127.0.0.1:25567]: "
 
 set "MOTD=KEYDAL"
-set /p "MOTD=[5/6] MOTD markasi [KEYDAL]: "
+set /p "MOTD=[5/7] MOTD markasi [KEYDAL]: "
+
+echo.
+echo  kVelocity lisans anahtari ^(https://keydal.net^):
+set "LICENSE_KEY=YOUR-LICENSE-KEY-HERE"
+set /p "LICENSE_KEY=[6/7] License key: "
 
 echo.
 echo  Opsiyonel ozellikler:
@@ -54,6 +59,7 @@ echo    RAM:         %RAM%MB
 echo    Lobi:        %LOBBY%
 echo    Sunucu:      %SERVER%
 echo    MOTD:        %MOTD%
+echo    License:     %LICENSE_KEY:~0,20%...
 echo    Ekstralar:   %INSTALL_EXTRAS%
 echo.
 set "CONFIRM=E"
@@ -133,7 +139,7 @@ if exist "velocity.toml" (
 )
 
 echo.
-echo [kVelocity] [5/5] Baslat scriptleri guncelleniyor...
+echo [kVelocity] [5/6] Baslat scriptleri guncelleniyor...
 if exist "baslat.bat" (
     powershell -NoProfile -Command ^
         "$c = Get-Content 'baslat.bat' -Raw; " ^
@@ -148,6 +154,13 @@ if exist "baslat.sh" (
         "[IO.File]::WriteAllText('baslat.sh', $c -replace \"`r`n\", \"`n\")"
     echo [OK] baslat.sh RAM -^> %RAM%MB
 )
+
+echo.
+echo [kVelocity] [6/6] kGuard lisans yapilandiriliyor...
+if not exist "plugins\kguard" mkdir "plugins\kguard"
+powershell -NoProfile -Command ^
+    "Set-Content -Path 'plugins\kguard\config.yml' -Value 'license-key: \"%LICENSE_KEY%\"' -Encoding UTF8"
+echo [OK] plugins\kguard\config.yml olusturuldu.
 
 echo.
 echo  ==============================================
